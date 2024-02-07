@@ -6,7 +6,7 @@
  * @param tiempoPreparacion Int - Tiempo estimado para preparar el plato (en minutos).
  * @param ingredientes List - Lista de ingredientes necesarios para el plato.
  */
-class Plato(nombre: String,precio: Double,val tiempoPreparacion:Int,val ingredientes: MutableList<String>) {
+class Plato(nombre: String,precio: Double,tiempoPreparacion:Int,ingredientes: MutableList<String>) {
 
     var nombre: String = nombre
         set(value) {
@@ -20,24 +20,44 @@ class Plato(nombre: String,precio: Double,val tiempoPreparacion:Int,val ingredie
             requirePrecio()
         }
 
+    var tiempoPreparacion: Int = tiempoPreparacion
+        set(value) {
+            field = value
+            requireTiempoPreparacion()
+        }
+
+    var ingredientes: MutableList<String> = ingredientes
+        set(value) {
+            field = value
+            requireIngrediente()
+        }
+
     init {
         requireNombre()
         requirePrecio()
+        requireTiempoPreparacion()
+        requireIngrediente()
     }
 
     fun agregarIngrediente(ingrediente: String) {
         ingredientes.add(ingrediente)
     }
 
-    fun requireNombre() {
+    private fun requireNombre() {
         require(nombre.isNotBlank()) { "El nombre no puede estar vacio." }
     }
 
-    fun requirePrecio() {
+    private fun requirePrecio() {
         require(precio > 0) { "El precio debe ser positivo" }
     }
 
+    private fun requireTiempoPreparacion() {
+        require(tiempoPreparacion >= 1) { "El tiempo de preparación no podrá ser igual o inferior a 1." }
+    }
 
+    private fun requireIngrediente() {
+        require(ingredientes.isNotEmpty()) { "Un ingrediente no puede ser vacío." }
+    }
 
     override fun toString(): String {
         return "$nombre ($tiempoPreparacion)min. -> $precio€ (${ingredientes.joinToString(", ")})"

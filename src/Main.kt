@@ -1,5 +1,4 @@
 fun main() {
-    /*
     // Inicialización de mesas
     val mesas = listOf(
         Mesa(numero = 1, capacidad = 4),
@@ -93,8 +92,4 @@ fun main() {
     else {
         println("No existen platos.")
     }
-     */
-    val listaIngredientes = mutableListOf("pan","lechuga","tomate","carne")
-    val plato1 = Plato("Hamburguesa",8.99,8,listaIngredientes)
-    println(plato1)
 }
