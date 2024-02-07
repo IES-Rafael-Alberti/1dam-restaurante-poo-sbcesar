@@ -18,8 +18,8 @@ Las siguientes funciones son muy útiles para trabajar con colecciones en Kotlin
      ```kotlin
      val number: Int? = 3
      number?.let {
-         val triple = it * 3
-         println(triple) // Imprime 9
+         val triple = (it * 3).also {
+         println(it)} // Imprime 9
      }
      ```
 
